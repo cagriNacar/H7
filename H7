@@ -1,0 +1,171 @@
+namespace HW6
+{
+    
+    internal class Program
+    {
+        public enum FuelType { Petrol, Diesel, Electric }
+
+        static void Main(string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+            Vehicle[] vehicles = new Vehicle[3];
+
+            vehicles[0] = new Car("Togg","T10X",2023,FuelType.Electric);
+            vehicles[1] = new Truck("Scania","620R",2019, FuelType.Petrol);
+            vehicles[2] = new Motorcycle("Yamaha","1000RR",2015,FuelType.Petrol);
+
+            foreach (var v in vehicles)
+            {
+                v.StartEngine();
+            }
+
+            foreach (var v in vehicles)
+            {
+                v.Info();
+            }
+
+        }
+
+    }   
+    class Vehicle
+    {
+        public static int Count = 0;
+        public string Brand {  get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+        public FuelType Fuel { get; set; }
+
+        public Vehicle(string brand, string model, int year,FuelType fuel) 
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            Fuel = fuel;
+            Count++;
+
+        }
+
+        public virtual void StartEngine()
+        {
+           
+        }
+
+        public virtual void Info()
+        {
+            Console.WriteLine($"{Brand} {Model} ({Year} , {Fuel})");
+        }
+
+    }
+
+    class Car : Vehicle
+    {
+        public Car(string brand, string model, int year, FuelType fuel) : base (brand, model, year, fuel)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            Fuel = fuel;
+            
+        }
+
+        public override void StartEngine()
+        {
+            Console.Write("Do you want start engine (y / n)?  ");
+            char isCheck = char.Parse(Console.ReadLine());
+
+            if (isCheck == 'y')
+            {
+                Console.WriteLine("Engine has started.");
+            }
+            else
+            {
+                Console.WriteLine("Engine is not working.");
+            }
+        }
+
+        public override void Info()
+        {
+            Console.WriteLine($"{Brand} {Model} ({Year} , {Fuel})");
+        }
+            
+        }
+
+        class Truck : Vehicle
+        {
+            public Truck(string brand, string model, int year, FuelType fuel) : base(brand, model, year,fuel)
+            {
+                Brand = brand;
+                Model = model;
+                Year = year;
+                Fuel = fuel;
+                
+
+        }
+
+            public override void StartEngine()
+            {
+                Console.Write("Do you want start engine (y / n)?  ");
+                char isCheck = char.Parse(Console.ReadLine());
+
+                if (isCheck == 'y')
+                {
+                    Console.WriteLine("Engine has started.");
+                }
+                else
+                {
+                    Console.WriteLine("Engine is not working.");
+                }
+
+            }
+        public override void Info()
+        {
+            Console.WriteLine($"{Brand} {Model} ({Year} , {Fuel})");
+        }
+
+    
+
+
+
+
+}
+    class Motorcycle : Vehicle
+    {
+        public Motorcycle(string brand, string model, int year, FuelType fuel) : base(brand, model, year, fuel)
+        {
+            Brand = brand;
+            Model = model;
+            Year = year;
+            Fuel = fuel;
+           
+
+        }
+
+        public override void StartEngine()
+        {
+            Console.Write("Do you want start engine (y / n)?  ");
+            char isCheck = char.Parse(Console.ReadLine());
+
+            if (isCheck == 'y')
+            {
+                Console.WriteLine("Engine has started.");
+            }
+            else
+            {
+                Console.WriteLine("Engine is not working.");
+            }
+
+        }
+        public override void Info()
+        {
+            Console.WriteLine($"{Brand} {Model} ({Year} , {Fuel})");
+        }
+
+    
+
+
+
+}
+
+
+}
